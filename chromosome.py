@@ -40,20 +40,32 @@ class Chromosome:
     #   Valor de sua geração atual
         self.generation = 0
 
+    def wightedChoice(self, elements):
+        #   Recebe uma lista e escolhe um valor aleatório com peso baseado na posição de cada elemento, tendendo a escolha para o final da lista
+
+        if len(elements) == 1:
+            return elements[0]
+        
+        else:
+            sum = 0
+            for _ in range(len(elements)):
+                sum += _
+
+            choice = random.randint(1, sum)
+            newSum = 0
+            for _ in range(len(elements)):
+                newSum += _
+                if choice <= newSum:
+                    return elements[_]
+
     def mutation(self,  mutationChance, mutationChanceForCollision):
         #   A função mutacão recebe um individio e realiza sua mutação
         # baseada em uma porcentagem enviada pelo parametro `mutationChance`
         if self.hadACollision:
-            if self.rating < 100:
-                index = random.choice(self.indexesOfMultipleRoads)
-            elif self.rating < 1000:
-                index = random.choice(self.indexesOfMultipleRoads[-2:])
-            elif self.rating < 2000:
-                index = random.choice(self.indexesOfMultipleRoads[-3:])
-            else:   
-                index = random.choice(self.indexesOfMultipleRoads[-4:])
             if random.random()*100 < mutationChanceForCollision:
-                #print('Vai mutar na posicao {}'.format(index))
+
+                index = self.wightedChoice(self.indexesOfMultipleRoads)
+
                 self.possibleRoads = self.possibleRoads[:index]
                 self.road = self.road[:index]
                 self.indexesOfMultipleRoads = self.indexesOfMultipleRoads[:self.indexesOfMultipleRoads.index(
@@ -210,7 +222,6 @@ class Chromosome:
                 maze[actualPoint[0]][actualPoint[1]] = 5
             elif maze[actualPoint[0]][actualPoint[1]] != 3:
                 maze[actualPoint[0]][actualPoint[1]] = 4
-            
 
     def appendRoad(self, possible):
 

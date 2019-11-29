@@ -7,7 +7,6 @@ from handleFile import HandleFile
 from timeit import default_timer as timer
 import sys
 import copy
-from time import sleep
 import os
 import json
 
@@ -122,6 +121,7 @@ def showInformationDuringMoving(currentGeneration, bestGeneration, mutationChanc
 
 
 def move(matrix, population, testMode, generations):
+
     initialCoordinates = getPoint(matrix, 2)
     maze = copy.deepcopy(matrix)
     start = timer()
@@ -129,10 +129,10 @@ def move(matrix, population, testMode, generations):
     individual = Chromosome(0, [])
     mutationWeight = 4
     mutationChance = 5
-    pop = population.individuals.copy()
+
     #   Inicia o loop de gerações
     for currentGeneration in range(generations):
-        for individual in pop:
+        for individual in population.individuals:
 
             individual.setGeneration(currentGeneration)
 
@@ -149,10 +149,10 @@ def move(matrix, population, testMode, generations):
             if individual.found:
                 bestIndividual.saveIndividual(individual)
                 break
-
+            
         os.system('cls')
         print('Geração: {}'.format(currentGeneration))
-
+        print('Fitness: {}'.format(population.getBestIndividual().rating))
         if bestIndividual.found:
             break
         elif bestIndividual.rating < population.getBestIndividual().rating:
@@ -178,7 +178,6 @@ def move(matrix, population, testMode, generations):
         bestIndividual.moveChromossome(initialCoordinates, maze)
         showWindow(maze)
 
-
 def writeResults(fileName, content):
     f = open('Results/' + fileName + '.json', 'w+')
 
@@ -187,21 +186,25 @@ def writeResults(fileName, content):
     f.close()
 
 
+
+
+
+
+
 #   Main
 fileName = input('Entre com o nome do arquivo [M0/M1/M2/M3]: ')
 handle = HandleFile(fileName)
 matrix = handle.getMatrix()
 
-
-generations = 1000000
+generations = 10000
 populationSize = 50
 initialPoint = getPoint(matrix, 2)
 
+response = input('Deseja habilitar o modo de testes? [S/n]:  ')
 
-
-response = input('Deseja habilitar o modo de testes? [S/n] ')
 if response == 'S' or response == 's':
-    numberOfRounds = int(input('Entre com a quantidade de testes: '))
+
+    numberOfRounds = int(input('Entre com a quantidade de testes [Ex: 1]:'))
 
     resultsFileName = input(
         'Entre com o nome do arquivo para salvar os testes: [Ex: "Results"] \n Nome: ')
@@ -214,6 +217,7 @@ if response == 'S' or response == 's':
         "PopulationSize": populationSize,
         "Results": []
     }
+
     for _ in range(numberOfRounds):
         population = Population(initialPoint, matrix, populationSize)
         data = move(matrix, population, True, generations)
@@ -221,6 +225,8 @@ if response == 'S' or response == 's':
 
     content['Results'] = rounds
     writeResults(resultsFileName, content)
+
 else:
+
     population = Population(initialPoint, matrix, populationSize)
     move(matrix, population, False, generations)

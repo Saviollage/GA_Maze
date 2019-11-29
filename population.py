@@ -24,38 +24,6 @@ class Population:
 
         return individuals
 
-    def crossover(self,  chromosome1, chromosome2):
-        #   A função crossover recebe um individuo como parametro e modifica
-        # o individuo atual para o crossover entre ambos
-
-        r1 = chromosome1.road.copy()
-        r2 = chromosome2.road.copy()
-
-        if chromosome1.rating > chromosome2.rating and len(chromosome1.indexesOfCollision) > 0:
-            index_r1 = chromosome1.indexesOfCollision[0]
-
-        elif chromosome1.rating < chromosome2.rating and len(
-                chromosome2.indexesOfCollision) > 0:
-            index_r1 = chromosome2.indexesOfCollision[0]
-
-        else:
-            index_r1 = len(r1) - 1
-
-        #   Aqui ja temos ambos com o mesmo tamanho de road (caminho),
-        # sendo assim é possível relizar o crossover entre estes. Para isto
-        # seleciona uma posicao aleatoria da lista e realiza a troca
-        # position = int((len(r1) - (chromosome1.rating + chromosome2.rating)/2))
-
-        position = index_r1
-
-        chromosome1.road = (
-            r1[:position] + r2[position:])
-
-        chromosome2.road = (
-            r2[:position] + r1[position:])
-
-        return chromosome1, chromosome2
-
     def sortByRate(self, element):
         return element.rating
 
@@ -68,27 +36,10 @@ class Population:
         best.generation = self.individuals[0].generation
         best.rating = self.individuals[0].rating
         best.road = self.individuals[0].road.copy()
-        best.indexesOfMultipleRoads = self.individuals[0].indexesOfMultipleRoads.copy(
-        )
+        best.indexesOfMultipleRoads = self.individuals[0].indexesOfMultipleRoads.copy()
         best.hadACollision = self.individuals[0].hadACollision
         best.possibleRoads = copy.deepcopy(self.individuals[0].possibleRoads)
         best.found = self.individuals[0].found
 
         return best
 
-    def addRoad(self, initialCoordinates, matrix):
-        self.size = len(self.individuals) - 1
-        for _ in range(self.size):
-            self.individuals[_].generateIndexesArrays(
-                initialCoordinates, matrix)
-            self.individuals[_].appendRoad(
-                self.individuals[_].possibleRoads[-1])
-
-    def updatePopulation(self, newPopulation):
-        self.individuals = []
-        for ind in newPopulation:
-            self.individuals.append(ind)
-
-    def updateGeneration(self, generation):
-        for ind in self.individuals:
-            ind.setGeneration(generation)

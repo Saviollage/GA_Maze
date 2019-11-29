@@ -10,9 +10,9 @@ class HandleFile:
         #       A função fileData recebe um nome de um arquivo a ser
         #   aberto pelo usuário e mostra na tela a quantidade de linhas
         #   e colunas deste
-
+        
         print('Analisando arquivo {}.txt'.format(name))
-        file = open('{}.txt'.format(name), 'r')
+        file = open('Maze/{}.txt'.format(name), 'r')
         contents = file.read()
 
         lines = contents.split('\n')

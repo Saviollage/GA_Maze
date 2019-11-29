@@ -1,0 +1,172 @@
+{
+  "Arquivo Labirinto": "M0",
+  "QtdMaxGeracoes": 10000,
+  "PopulationSize": 50,
+  "Results": [
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.0816087999999997
+    },
+    { "Fitness": 33, "Geracao": 33, "Encontrou": true, "Tempo": 1.0875319 },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.4118952999999994
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.3623805999999998
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.1202375999999994
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.0901999000000018
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.1543518000000006
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.4529923000000018
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.3459941999999998
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.253457100000002
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.1405484000000001
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.191029499999999
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.2918808999999989
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.5294357000000005
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.4830450000000006
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.2258689000000018
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.3372661000000008
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.509249699999998
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.4998295999999982
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.2314772000000005
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.2524972000000005
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.4664537000000024
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.471038699999994
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.2806724000000003
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.1969311000000005
+    },
+    { "Fitness": 33, "Geracao": 33, "Encontrou": true, "Tempo": 1.4717123 },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.5232895000000042
+    },
+    { "Fitness": 33, "Geracao": 33, "Encontrou": true, "Tempo": 1.2985197 },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.226076599999999
+    },
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 1.5285749000000024
+    }
+  ]
+}
