@@ -9,6 +9,7 @@ import sys
 import copy
 import os
 import json
+from time import sleep
 
 
 def showWindow(matrix):
@@ -88,7 +89,7 @@ def showWindow(matrix):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit(0)
+                
 
         pygame.display.update()
 
@@ -149,10 +150,14 @@ def move(matrix, population, testMode, generations):
             if individual.found:
                 bestIndividual.saveIndividual(individual)
                 break
-            
+
         os.system('cls')
         print('Geração: {}'.format(currentGeneration))
         print('Fitness: {}'.format(population.getBestIndividual().rating))
+        print('Possivel: {}'.format(
+            population.getBestIndividual().indexesOfMultipleRoads))
+
+            
         if bestIndividual.found:
             break
         elif bestIndividual.rating < population.getBestIndividual().rating:
@@ -167,16 +172,19 @@ def move(matrix, population, testMode, generations):
     population.individuals = sorted(
         population.individuals, key=lambda item: (-item.found, -item.rating))
 
-    if testMode:
-        return {
-            "Fitness": bestIndividual.rating,
-            "Geracao": bestIndividual.generation,
-            "Encontrou": bestIndividual.found,
-            "Tempo": timer() - start
-        }
-    else:
-        bestIndividual.moveChromossome(initialCoordinates, maze)
-        showWindow(maze)
+    content['Results'].append({
+        "Fitness": bestIndividual.rating,
+        "Geracao": bestIndividual.generation,
+        "Encontrou": bestIndividual.found,
+        "Tempo": timer() - start,
+        "Qte Cruzamentos": len(bestIndividual.indexesOfMultipleRoads)
+    })
+
+    writeResults(resultsFileName, content)
+
+    bestIndividual.moveChromossome(initialCoordinates, maze)
+    showWindow(maze)
+
 
 def writeResults(fileName, content):
     f = open('Results/' + fileName + '.json', 'w+')
@@ -186,47 +194,28 @@ def writeResults(fileName, content):
     f.close()
 
 
-
-
-
-
-
 #   Main
 fileName = input('Entre com o nome do arquivo [M0/M1/M2/M3]: ')
 handle = HandleFile(fileName)
 matrix = handle.getMatrix()
 
 generations = 10000
-populationSize = 50
+populationSize = 25
 initialPoint = getPoint(matrix, 2)
 
-response = input('Deseja habilitar o modo de testes? [S/n]:  ')
 
-if response == 'S' or response == 's':
+resultsFileName = input(
+    'Entre com o nome do arquivo para salvar os testes: [Ex: "Results"] \n Nome: ')
 
-    numberOfRounds = int(input('Entre com a quantidade de testes [Ex: 1]:'))
 
-    resultsFileName = input(
-        'Entre com o nome do arquivo para salvar os testes: [Ex: "Results"] \n Nome: ')
 
-    rounds = []
+content = {
+    "Arquivo Labirinto": fileName,
+    "QtdMaxGeracoes": generations,
+    "PopulationSize": populationSize,
+    "Results": []
+}
 
-    content = {
-        "Arquivo Labirinto": fileName,
-        "QtdMaxGeracoes": generations,
-        "PopulationSize": populationSize,
-        "Results": []
-    }
 
-    for _ in range(numberOfRounds):
-        population = Population(initialPoint, matrix, populationSize)
-        data = move(matrix, population, True, generations)
-        rounds.append(data)
-
-    content['Results'] = rounds
-    writeResults(resultsFileName, content)
-
-else:
-
-    population = Population(initialPoint, matrix, populationSize)
-    move(matrix, population, False, generations)
+population = Population(initialPoint, matrix, populationSize)
+move(matrix, population, content, generations)

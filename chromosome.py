@@ -45,7 +45,7 @@ class Chromosome:
 
         if len(elements) == 1:
             return elements[0]
-        
+
         else:
             sum = 0
             for _ in range(len(elements)):
@@ -58,19 +58,53 @@ class Chromosome:
                 if choice <= newSum:
                     return elements[_]
 
+    # def mutation(self,  mutationChance, mutationChanceForCollision):
+    #     #   A função mutacão recebe um individio e realiza sua mutação
+    #     # baseada em uma porcentagem enviada pelo parametro `mutationChance`
+    #     if self.hadACollision:
+    #         if random.random()*100 < mutationChanceForCollision:
+
+    #             index = self.wightedChoice(self.indexesOfMultipleRoads)
+
+    #             self.possibleRoads = self.possibleRoads[:index]
+    #             self.road = self.road[:index]
+    #             self.indexesOfMultipleRoads = self.indexesOfMultipleRoads[:self.indexesOfMultipleRoads.index(
+    #                 index)]
+    #             self.hadACollision = False
+
+    # def mutation(self,  mutationChance, mutationChanceForCollision):
+    #     #   A função mutacão recebe um individio e realiza sua mutação
+    #     # baseada em uma porcentagem enviada pelo parametro `mutationChance`
+    #     if self.hadACollision:
+
+    #         if random.random()*100 < mutationChanceForCollision:
+    #             if len(self.indexesOfMultipleRoads) < 10:
+    #                 index = random.choice(self.indexesOfMultipleRoads)
+    #             else:
+    #                 index = self.wightedChoice(self.indexesOfMultipleRoads[-5:])
+
+    #             self.possibleRoads = self.possibleRoads[:index]
+    #             self.road = self.road[:index]
+    #             self.indexesOfMultipleRoads = self.indexesOfMultipleRoads[:self.indexesOfMultipleRoads.index(
+    #                 index)]
+
+    #             self.hadACollision = False
+
     def mutation(self,  mutationChance, mutationChanceForCollision):
         #   A função mutacão recebe um individio e realiza sua mutação
         # baseada em uma porcentagem enviada pelo parametro `mutationChance`
         if self.hadACollision:
             if random.random()*100 < mutationChanceForCollision:
+                if len(self.indexesOfMultipleRoads) > 1:
+                    index = self.indexesOfMultipleRoads.pop()
+                    if len(self.possibleRoads[index]) == 0:
+                        index = self.indexesOfMultipleRoads.pop()
 
-                index = self.wightedChoice(self.indexesOfMultipleRoads)
-
-                self.possibleRoads = self.possibleRoads[:index]
-                self.road = self.road[:index]
-                self.indexesOfMultipleRoads = self.indexesOfMultipleRoads[:self.indexesOfMultipleRoads.index(
-                    index)]
-                self.hadACollision = False
+                    self.possibleRoads[index].remove(self.road[index])
+                    self.possibleRoads = self.possibleRoads[:index+1]
+                    self.road = self.road[:index]
+                    self.appendRoad(self.possibleRoads[index])
+                    self.hadACollision = False
 
     def getPossibleRoad(self, maze, point):
         possible = []
@@ -224,8 +258,8 @@ class Chromosome:
                 maze[actualPoint[0]][actualPoint[1]] = 4
 
     def appendRoad(self, possible):
-
-        self.road.append(random.choice(possible))
+        if len(possible) > 0:
+            self.road.append(random.choice(possible))
 
     def setGeneration(self, generation):
         self.generation = generation
