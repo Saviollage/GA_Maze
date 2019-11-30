@@ -89,7 +89,7 @@ def showWindow(matrix):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                
+                sys.exit(0)
 
         pygame.display.update()
 
@@ -157,7 +157,7 @@ def move(matrix, population, testMode, generations):
         print('Possivel: {}'.format(
             population.getBestIndividual().indexesOfMultipleRoads))
 
-            
+
         if bestIndividual.found:
             break
         elif bestIndividual.rating < population.getBestIndividual().rating:
