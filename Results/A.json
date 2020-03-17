@@ -1,0 +1,14 @@
+{
+  "Arquivo Labirinto": "M0",
+  "QtdMaxGeracoes": 10000,
+  "PopulationSize": 25,
+  "Results": [
+    {
+      "Fitness": 33,
+      "Geracao": 33,
+      "Encontrou": true,
+      "Tempo": 2.3549339000000007,
+      "Qte Cruzamentos": 2
+    }
+  ]
+}
