@@ -8,10 +8,10 @@ Código desenvolvido em python para a resolução de labirintos em txt (presente
     <img src="Imagens/Labirinto_M0_TXT.jpg" width="400"/>
 </td>
   <td style="text-align: center">
-    <img src="Imagens/Resolucao_M0.jpg.png" width="400"/>
+    <img src="Imagens/Resolucao_M0.jpg" width="400"/>
 </td>
   <td style="text-align: center">
-    <img src="Imagens/Tempo_M0.png" width="400"/>
+    <img src="Imagens/Tempo_M0.jpg" width="400"/>
 </td>
   
 </tr></table></div>
