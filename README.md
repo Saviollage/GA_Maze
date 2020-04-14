@@ -24,7 +24,7 @@ Código desenvolvido em python para a resolução de labirintos em txt (presente
     <img src="Imagens/Resolucao_M2.jpg" width="400"/>
 </td>
   <td style="text-align: center">
-    <img src="Imagens/Resolucao_M3.jpg" width="400"/>
+    <img src="Imagens/Resolucao_M3.jpeg" width="400"/>
 </td>
   
 </tr></table></div>
